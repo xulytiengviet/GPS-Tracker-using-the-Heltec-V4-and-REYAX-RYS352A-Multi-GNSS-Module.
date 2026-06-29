@@ -1,5 +1,7 @@
 # 🛰️ GPS Tracker using Heltec WiFi LoRa 32 V4 and REYAX RYS352A GNSS Module
 
+![Complete Setup](https://playwithcircuit.com/wp-content/uploads/2026/06/GPS-Tracker-using-Reyax-GNSS-Module-and-Heltec-V4-Board.webp)
+
 A browser-based **real-time GPS Tracker** built using the **Heltec WiFi LoRa 32 V4** development board and the **REYAX RYS352A Multi-GNSS Module**.
 
 The project receives location data from multiple GNSS satellite constellations, displays the current coordinates on the onboard OLED display, and visualizes the current location and travelled path on an interactive OpenStreetMap interface—all without relying on any third-party cloud platform.
