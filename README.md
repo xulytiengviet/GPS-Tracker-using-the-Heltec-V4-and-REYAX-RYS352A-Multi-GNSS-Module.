@@ -1,137 +1,165 @@
-# 🛰️ GPS Tracker using Heltec WiFi LoRa 32 V4 and REYAX RYS352A GNSS Module
+# 🛰️ Bộ theo dõi GPS/GNSS thời gian thực — Heltec V4 + REYAX RYS352A
 
-![Complete Setup](https://playwithcircuit.com/wp-content/uploads/2026/06/GPS-Tracker-using-Reyax-GNSS-Module-and-Heltec-V4-Board.webp)
+![Mô hình hoàn chỉnh](https://playwithcircuit.com/wp-content/uploads/2026/06/GPS-Tracker-using-Reyax-GNSS-Module-and-Heltec-V4-Board.webp)
 
-A browser-based **real-time GPS Tracker** built using the **Heltec WiFi LoRa 32 V4** development board and the **REYAX RYS352A Multi-GNSS Module**.
+Đây là dự án **theo dõi vị trí GPS/GNSS thời gian thực trên trình duyệt**, sử dụng bo mạch **Heltec WiFi LoRa 32 V4** và mô-đun **REYAX RYS352A Multi-GNSS**.
 
-The project receives location data from multiple GNSS satellite constellations, displays the current coordinates on the onboard OLED display, and visualizes the current location and travelled path on an interactive OpenStreetMap interface—all without relying on any third-party cloud platform.
+Thiết bị nhận dữ liệu từ nhiều hệ thống vệ tinh GNSS, hiển thị tọa độ hiện tại trên màn hình OLED tích hợp và cung cấp một trang WebGIS dùng **Leaflet + OpenStreetMap** để quan sát vị trí và hành trình trực tiếp — **không cần nền tảng đám mây bên thứ ba**.
 
-> 📖 **Complete Tutorial:** https://playwithcircuit.com/gps-tracker-using-reyax-gnss-module-and-heltec-v4-board/
-
----
-
-## ✨ Features
-
-* 🛰️ Multi-GNSS support (GPS, GLONASS, Galileo, BeiDou & QZSS)
-* 🌍 Browser-based live location tracking using OpenStreetMap
-* 🚗 Displays travelled path in real time
-* 📍 Shows latitude, longitude, and satellite count on the onboard OLED
-* ☁️ No cloud platform or account registration required
-* 📡 Built-in web server hosted directly on the Heltec board
-* 🔌 Minimal hardware connections using the dedicated GNSS interface
-* 📱 Accessible from any smartphone, tablet, or computer connected to the same Wi-Fi network
-* 🚀 Beginner-friendly and easy to customize
+> 📖 **Bài hướng dẫn gốc:** https://playwithcircuit.com/gps-tracker-using-reyax-gnss-module-and-heltec-v4-board/
 
 ---
 
-## 🛠 Hardware Required
+## ✨ Tính năng chính
 
-| Component                 |   Quantity  |
-| ------------------------- | :---------: |
-| Heltec WiFi LoRa 32 V4    |      1      |
-| REYAX RYS352A GNSS Module |      1      |
-| Breadboard                |      1      |
-| Breadboard Power Supply   |      1      |
-| 12V Lithium Battery       |      1      |
-| USB Type-C Cable          |      1      |
-| Jumper Wires              | As required |
-
----
-
-## 💻 Software Requirements
-
-* Arduino IDE 2.3.9 or later
-* Heltec ESP32 Dev-Boards Library
-* TinyGPS++
-* ESP32 WiFi Library
-* ESP32 WebServer Library
+- 🛰️ **Đa hệ GNSS:** GPS, GLONASS, Galileo, BeiDou và QZSS.
+- 🗺️ **Bản đồ trực tiếp:** hiển thị vị trí trên OpenStreetMap bằng Leaflet.
+- 🚗 **Vẽ hành trình:** cập nhật đường đi theo thời gian thực.
+- 📍 **Thông tin tọa độ:** vĩ độ, kinh độ và số vệ tinh.
+- 📺 **OLED tích hợp:** hiển thị dữ liệu GNSS ngay trên thiết bị.
+- 📡 **Web server nhúng:** ESP32 tự phục vụ giao diện web qua cổng 80.
+- ☁️ **Không cần cloud:** không cần tài khoản hay máy chủ trung gian.
+- 📱 **Đa thiết bị:** mở bằng điện thoại, máy tính bảng hoặc PC cùng mạng Wi‑Fi.
+- 🇻🇳 **Giao diện tiếng Việt:** các nhãn, trạng thái và hướng dẫn được Việt hóa.
+- 🎨 **Icon hóa trực quan:** dùng biểu tượng cho vị trí, vệ tinh, Wi‑Fi và hành trình.
 
 ---
 
-## 🔌 Hardware Connections
+## 🧰 Phần cứng cần chuẩn bị
 
-![Hardware](https://playwithcircuit.com/wp-content/uploads/2026/06/GPS-Tracker-Circuit-Diagram.webp)
-
-| RYS352A GNSS Module | Heltec WiFi LoRa 32 V4 |
-| ------------------- | ---------------------- |
-| TX                  | GPIO38 (RX)            |
-| VCC                 | 3.3V                   |
-| GND                 | GND                    |
-
-> **Note:** The GNSS module can also be connected directly to the dedicated Molex GNSS connector available on the Heltec board.
-
----
-
-## ⚙️ How It Works
-
-1. The RYS352A GNSS module receives signals from multiple navigation satellite constellations.
-2. The Heltec board reads the NMEA data through UART communication.
-3. Latitude, longitude, and satellite count are extracted from the received data.
-4. The current coordinates are displayed on the onboard OLED display.
-5. The board connects to a Wi-Fi hotspot and starts an embedded web server.
-6. Opening the assigned IP address in a browser displays the current location on an interactive OpenStreetMap.
-7. As the tracker moves, the marker position updates automatically and the travelled path is drawn in real time.
-
-![Hardware](https://playwithcircuit.com/wp-content/uploads/2026/06/GPS-Tracker-Prototype.jpg)
-
+| 🔧 Linh kiện | 🔢 Số lượng |
+| --- | :---: |
+| Heltec WiFi LoRa 32 V4 | 1 |
+| REYAX RYS352A GNSS Module | 1 |
+| Breadboard | 1 |
+| Nguồn cho breadboard | 1 |
+| Pin Lithium 12V | 1 |
+| Cáp USB Type‑C | 1 |
+| Dây jumper | Theo nhu cầu |
 
 ---
 
-## 📷 Expected Output
+## 💻 Phần mềm / thư viện
 
-* OLED displays:
-
-  * Latitude
-  * Longitude
-  * Connected satellites
-
-* Browser displays:
-
-  * Live GPS location
-  * Interactive OpenStreetMap
-  * Real-time travelled path
+- 🧩 Arduino IDE 2.3.9 hoặc mới hơn
+- 📦 Heltec ESP32 Dev-Boards Library
+- 🛰️ TinyGPS++
+- 📶 ESP32 WiFi Library
+- 🌐 ESP32 WebServer Library
 
 ---
 
-## 🚗 Applications
+## 🔌 Sơ đồ kết nối
 
-* Vehicle Tracking
-* Fleet Monitoring
-* Asset Tracking
-* Personal Safety Devices
-* IoT Location Monitoring
-* Outdoor Navigation Systems
+![Sơ đồ phần cứng](https://playwithcircuit.com/wp-content/uploads/2026/06/GPS-Tracker-Circuit-Diagram.webp)
 
----
+| 🛰️ RYS352A | 🧠 Heltec WiFi LoRa 32 V4 |
+| --- | --- |
+| TX | GPIO38 (RX) |
+| VCC | 3.3V |
+| GND | GND |
 
-## 📖 Complete Tutorial
-
-A detailed tutorial including:
-
-* Hardware overview
-* Circuit diagram
-* Complete source code
-* Code explanation
-* GNSS working principle
-* Testing
-* Troubleshooting
-
-is available on **PlayWithCircuit**
+> ℹ️ **Lưu ý:** RYS352A cũng có thể kết nối trực tiếp vào đầu nối Molex GNSS chuyên dụng trên bo Heltec V4.
 
 ---
 
-## 🌐 About PlayWithCircuit
+## ⚙️ Cách hệ thống hoạt động
 
-**PlayWithCircuit** publishes practical electronics, Arduino, ESP32, IoT, and embedded systems tutorials designed for students, hobbyists, makers, and professional engineers.
+1. 🛰️ RYS352A thu tín hiệu từ nhiều chòm vệ tinh định vị.
+2. 🔁 Heltec V4 đọc dữ liệu NMEA qua UART.
+3. 📍 TinyGPS++ phân tích vĩ độ, kinh độ và số vệ tinh.
+4. 📺 Dữ liệu GNSS được hiển thị trên OLED.
+5. 📶 ESP32 kết nối vào Wi‑Fi và khởi động web server.
+6. 🌐 Trình duyệt truy cập địa chỉ IP của thiết bị.
+7. 🗺️ Leaflet hiển thị vị trí trên OpenStreetMap.
+8. 🚗 Khi thiết bị di chuyển, marker và đường hành trình được cập nhật tự động.
+
+![Mẫu thử phần cứng](https://playwithcircuit.com/wp-content/uploads/2026/06/GPS-Tracker-Prototype.jpg)
 
 ---
 
-## ⭐ Support
+## 🔐 Cấu hình Wi‑Fi trước khi nạp code
 
-If you found this project helpful:
+Trong tệp `gnss.ino`, sửa hai dòng sau:
 
-* ⭐ Star this repository
-* 🍴 Fork it
-* 📢 Share it with the maker community
-* 🌍 Visit **Play with Circuit** for more embedded systems projects
+```cpp
+char ssid[] = "TEN_WIFI";
+char pass[] = "MAT_KHAU_WIFI";
+```
 
+> 🔒 Không nên đẩy mật khẩu Wi‑Fi thật lên repository công khai.
+
+---
+
+## 🖥️ Giao diện web tiếng Việt
+
+Trang web trên ESP32 hiển thị:
+
+- 📍 **Vĩ độ**
+- 🧭 **Kinh độ**
+- 🛰️ **Số vệ tinh**
+- 📡 **Trạng thái GNSS**
+- 🗺️ **Bản đồ OpenStreetMap**
+- 🚗 **Vị trí hiện tại**
+- 🛣️ **Đường hành trình**
+- ⏱️ **Tự động cập nhật định kỳ**
+
+Khi chưa có tọa độ GNSS hợp lệ, bản đồ giữ ở chế độ tổng quan và giao diện báo trạng thái **“Đang chờ tín hiệu GNSS”**.
+
+---
+
+## 📺 Thông tin trên OLED
+
+Để bảo đảm tương thích với font mặc định của SSD1306, chuỗi hiển thị trên OLED dùng chữ ASCII ngắn gọn:
+
+- `VI DO`
+- `KINH DO`
+- `VT` — số vệ tinh
+- trạng thái Wi‑Fi và địa chỉ IP
+
+Phần web vẫn hiển thị tiếng Việt có dấu đầy đủ.
+
+---
+
+## 🚗 Ứng dụng
+
+- 🚘 Theo dõi phương tiện
+- 🚚 Giám sát đội xe
+- 📦 Theo dõi tài sản
+- 🆘 Thiết bị an toàn cá nhân
+- 🌐 Giám sát vị trí IoT
+- 🥾 Dẫn đường ngoài trời
+- 🗺️ Thu thập dữ liệu thực địa GIS
+
+---
+
+## 🧪 Kiểm tra nhanh
+
+Sau khi nạp chương trình:
+
+1. Mở **Serial Monitor** ở baud `115200`.
+2. Chờ thiết bị kết nối Wi‑Fi.
+3. Ghi lại địa chỉ IP được in ra.
+4. Mở IP đó trên trình duyệt của thiết bị cùng mạng.
+5. Đưa mô-đun GNSS ra khu vực thoáng để bắt vệ tinh.
+6. Kiểm tra marker và hành trình trên bản đồ.
+
+---
+
+## 📖 Nguồn hướng dẫn
+
+Dự án được phát triển dựa trên hướng dẫn kỹ thuật của **PlayWithCircuit**, gồm sơ đồ mạch, giải thích GNSS, kiểm thử và xử lý lỗi.
+
+Phần Việt hóa và cải tiến giao diện trong repository này tập trung vào khả năng sử dụng thuận tiện hơn cho người dùng Việt Nam, đồng thời giữ nguyên nguyên lý hoạt động cốt lõi của hệ thống.
+
+---
+
+## ⭐ Đóng góp
+
+Nếu dự án hữu ích, bạn có thể:
+
+- ⭐ Star repository
+- 🍴 Fork để phát triển phiên bản riêng
+- 🐛 Mở Issue khi phát hiện lỗi
+- 🔧 Gửi Pull Request để cải tiến
+- 📢 Chia sẻ với cộng đồng IoT/GIS Việt Nam
